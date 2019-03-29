@@ -11,6 +11,22 @@
     "react/jsx-indent": 0,
     "react/jsx-filename-extension": 0
   },
+  "env": {
+    "jest": true,
+    "es6": true,
+    "node": true,
+    "browser": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
   "globals": {
     "global": true,
     "document": true
@@ -19,7 +35,7 @@
     "import/resolver": {
       "node": {
         "paths": [
-          "client/src"
+          "client"
         ]
       }
     }

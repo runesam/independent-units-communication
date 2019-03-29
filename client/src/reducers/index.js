@@ -2,12 +2,12 @@ import { connectRouter } from 'connected-react-router';
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
 
-// import dashboardUser from './dashboardUserReducer';
+import players from './players.reducer';
 // import promises from './promisesReducer';
 
 const allReducers = history => combineReducers({
     form,
-    // promises,
+    players,
     // dashboardUser,
     router: connectRouter(history),
 });
