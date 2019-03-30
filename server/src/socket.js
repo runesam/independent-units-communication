@@ -27,18 +27,17 @@ const onJoined = ({ username, room }, callback, socket) => {
         users.setUser(user);
         io.to(room).emit('updateUsersList', users.getRoomUsers(room));
         socket.emit('newMessage', 'welcome to the chat app');
-        // return socket.broadcast.to(room).emit('newMessage', generateMessage(
-        //     'admin',
-        //     `welcome ${username} he/she just joined the ${room} room`,
-        // ));
     }
-    // return callback({ error: true, text: 'username and room must be provided' });
+};
+
+const onInvite = (player) => {
+    console.log(player);
 };
 
 io.on('connection', (socket) => {
-    // console.log(socket);
     socket.on('disconnect', () => onDisconnect(socket));
     socket.on('joined', (data, callback) => onJoined(data, callback, socket));
+    socket.on('invite', (data, callback) => onInvite(data, callback, socket));
 });
 
 server.listen(

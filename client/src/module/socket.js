@@ -30,6 +30,8 @@ class Socket {
         console.log(data);
     };
 
+    invitePlayer = player => this.socket.emit('invite', player);
+
     handleOnConnect = () => {
         const url = new URL(window.document.location.href);
         const username = url.searchParams.get('username');

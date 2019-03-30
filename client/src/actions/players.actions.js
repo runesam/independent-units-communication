@@ -1,6 +1,6 @@
 import {
     PLAYERS_UPDATE,
-    PLAYER_REMOVE,
+    PLAYER_INVITE,
 } from '.';
 
 const updatePlayers = payload => ({
@@ -8,12 +8,12 @@ const updatePlayers = payload => ({
     payload,
 });
 
-const removePlayer = payload => ({
-    type: PLAYER_REMOVE,
+const invitePlayer = payload => ({
+    type: PLAYER_INVITE,
     payload,
 });
 
 export {
-    removePlayer,
+    invitePlayer,
     updatePlayers,
 };
