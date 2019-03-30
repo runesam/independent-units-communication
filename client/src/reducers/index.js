@@ -1,14 +1,16 @@
-import { connectRouter } from 'connected-react-router';
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
+import { connectRouter } from 'connected-react-router';
 
+import invite from './invite.reducer';
 import players from './players.reducer';
-// import promises from './promisesReducer';
+import invitation from './invitation.reducer';
 
 const allReducers = history => combineReducers({
     form,
+    invite,
     players,
-    // dashboardUser,
+    invitation,
     router: connectRouter(history),
 });
 

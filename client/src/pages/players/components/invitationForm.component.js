@@ -10,7 +10,12 @@ import { TextFieldComponent } from '.';
 const validator = value => value > 18 ? undefined : 'value must be greater than 18';
 
 const InvitationForm = (props) => {
-    const { handleSubmit, error, classes } = props;
+    const {
+        error,
+        classes,
+        pending,
+        handleSubmit,
+    } = props;
     return (
         <form onSubmit={handleSubmit} className={classes.container}>
             <Field
@@ -19,22 +24,25 @@ const InvitationForm = (props) => {
               type="number"
               error={error}
               label="Number"
-              component={TextFieldComponent}
-              placeholder="Init Number"
+              disabled={pending}
               validate={validator}
+              placeholder="Init Number"
+              component={TextFieldComponent}
             />
-            <Fab variant="extended" aria-label="invite" type="submit">
+            <Fab variant="extended" aria-label="invite" type="submit" disabled={pending}>
+                {pending ? 'Pending' : 'Invite'}
+                &nbsp;
                 <Icon />
-                Invite
             </Fab>
         </form>
     );
 };
 
 InvitationForm.propTypes = {
+    error: propTypes.bool,
+    pending: propTypes.bool.isRequired,
     handleSubmit: propTypes.func.isRequired,
     classes: propTypes.shape({}).isRequired,
-    error: propTypes.bool,
 };
 
 InvitationForm.defaultProps = {

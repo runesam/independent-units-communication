@@ -4,9 +4,15 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/icons/ExitToApp';
+import Typography from '@material-ui/core/Typography';
 
-import { socketInit, invitePlayer } from '../../actions';
-import { PlayersListComponent } from './components';
+import {
+    acceptInvitation,
+    invitePlayer,
+    rejectInvitation,
+    socketInit,
+} from '../../actions';
+import { InvitationComponent, PlayersListComponent } from './components';
 
 const styles = () => ({
     logout: {
@@ -19,8 +25,12 @@ const styles = () => ({
 class Players extends PureComponent {
     static propTypes = {
         socketInit: propTypes.func.isRequired,
-        classes: propTypes.shape({}).isRequired,
+        invite: propTypes.shape({}).isRequired,
         invitePlayer: propTypes.func.isRequired,
+        classes: propTypes.shape({}).isRequired,
+        invitation: propTypes.shape({}).isRequired,
+        acceptInvitation: propTypes.func.isRequired,
+        rejectInvitation: propTypes.func.isRequired,
         players: propTypes.arrayOf(propTypes.object).isRequired,
     };
 
@@ -35,42 +45,83 @@ class Players extends PureComponent {
 
     touchPlayer = tabbed => this.setState({ tabbed });
 
-    handleSubmit = ({ number }) => {
+    handleInvite = ({ number }) => {
         const { invitePlayer: invitePlayerAction } = this.props;
         const { tabbed } = this.state;
         invitePlayerAction({
             id: tabbed,
             number,
         });
+        // this.setState({ tabbed: '' });
+    };
+
+    handleInvitationAccept = () => {
+        const { acceptInvitation: acceptInvitationAction, invitation } = this.props;
+        acceptInvitationAction(invitation);
+    };
+
+    handleInvitationReject = () => {
+        const { rejectInvitation: rejectInvitationAction, invitation } = this.props;
+        rejectInvitationAction(invitation);
     };
 
     render() {
-        const { classes, players } = this.props;
+        const {
+            invite,
+            classes,
+            players,
+            invitation,
+        } = this.props;
         const { tabbed } = this.state;
+        if (players.length) {
+            return (
+                <div>
+                    <PlayersListComponent
+                      invite={invite}
+                      tabbed={tabbed}
+                      players={players}
+                      touchPlayer={this.touchPlayer}
+                      handleSubmit={this.handleInvite}
+                    />
+                    <Fab className={classes.logout}>
+                        <Icon />
+                    </Fab>
+                    {Boolean(invitation.from) && (
+                        <InvitationComponent
+                          open={Boolean(invitation.from)}
+                          invitation={invitation}
+                          accept={this.handleInvitationAccept}
+                          reject={this.handleInvitationReject}
+                        />
+                    )}
+                </div>
+            );
+        }
         return (
-            <div>
-                <PlayersListComponent
-                  tabbed={tabbed}
-                  players={players}
-                  touchPlayer={this.touchPlayer}
-                  handleSubmit={this.handleSubmit}
-                />
-                <Fab className={classes.logout}>
-                    <Icon />
-                </Fab>
-            </div>
+            <Typography
+              variant="h5"
+              align="center"
+              color="secondary"
+              gutterBottom
+            >
+                No Players Joined Yet!
+            </Typography>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    const { players } = state;
+    const { players, invite, invitation } = state;
     return {
+        invite,
         players,
+        invitation,
     };
 };
 
 export default connect(mapStateToProps, {
     socketInit,
     invitePlayer,
+    acceptInvitation,
+    rejectInvitation,
 })(withStyles(styles)(Players));

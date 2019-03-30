@@ -14,6 +14,7 @@ class PlayerItemComponent extends PureComponent {
     static propTypes = {
         tabbed: propTypes.string.isRequired,
         player: propTypes.shape({}).isRequired,
+        invite: propTypes.shape({}).isRequired,
         touchPlayer: propTypes.func.isRequired,
         handleSubmit: propTypes.func.isRequired,
         classes: propTypes.shape({}).isRequired,
@@ -27,15 +28,18 @@ class PlayerItemComponent extends PureComponent {
     render() {
         const {
             tabbed,
+            invite,
             player,
             classes,
             handleSubmit,
         } = this.props;
+        const pending = invite[player.id] === 'pending';
+        const rejected = invite[player.id] === 'rejected';
         return (
             <ListItem
               divider
               onClick={this.touchPlayer}
-              className={classes.item}
+              className={`${classes.item} ${rejected ? classes.rejected : ''}`}
             >
                 {tabbed !== player.id && (
                     <div className={classes.container}>
@@ -49,7 +53,9 @@ class PlayerItemComponent extends PureComponent {
                         </Fab>
                     </div>
                 )}
-                {tabbed === player.id && <InvitationFormComponent onSubmit={handleSubmit} />}
+                {tabbed === player.id && (
+                    <InvitationFormComponent pending={pending} onSubmit={handleSubmit} />
+                )}
             </ListItem>
         );
     }
@@ -67,6 +73,9 @@ const styles = theme => ({
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.white.main,
         justifyContent: 'space-between',
+    },
+    rejected: {
+        backgroundColor: theme.palette.error.main,
     },
 });
 

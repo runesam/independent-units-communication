@@ -8,6 +8,7 @@ import { PlayerItemComponent } from '.';
 const PlayersList = (props) => {
     const {
         tabbed,
+        invite,
         players,
         classes,
         touchPlayer,
@@ -19,6 +20,7 @@ const PlayersList = (props) => {
                 <PlayerItemComponent
                   key={player.id}
                   player={player}
+                  invite={invite}
                   tabbed={tabbed}
                   handleSubmit={handleSubmit}
                   touchPlayer={touchPlayer}
@@ -31,6 +33,7 @@ const PlayersList = (props) => {
 PlayersList.propTypes = {
     tabbed: propTypes.string.isRequired,
     touchPlayer: propTypes.func.isRequired,
+    invite: propTypes.shape({}).isRequired,
     handleSubmit: propTypes.func.isRequired,
     classes: propTypes.shape({}).isRequired,
     players: propTypes.arrayOf(propTypes.object).isRequired,

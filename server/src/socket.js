@@ -30,14 +30,22 @@ const onJoined = ({ username, room }, callback, socket) => {
     }
 };
 
-const onInvite = (player) => {
-    console.log(player);
+const onInvite = (payload, callback, socket) => {
+    socket.broadcast.to(payload.id).emit('invitation', {
+        from: users.getUser(socket),
+        number: payload.number,
+    });
+};
+
+const onRejectInvitation = (payload, callback, socket) => {
+    socket.broadcast.to(payload.from.id).emit('invitationRejected', { id: socket.id });
 };
 
 io.on('connection', (socket) => {
     socket.on('disconnect', () => onDisconnect(socket));
     socket.on('joined', (data, callback) => onJoined(data, callback, socket));
     socket.on('invite', (data, callback) => onInvite(data, callback, socket));
+    socket.on('rejectInvitation', (data, callback) => onRejectInvitation(data, callback, socket));
 });
 
 server.listen(

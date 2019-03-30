@@ -6,7 +6,7 @@ const theme = createMuiTheme({
     palette: {
         type: 'dark',
         primary: { main: '#50aadd' },
-        secondary: { main: '#696969' },
+        secondary: { main: '#c70000' },
         error: { main: '#c70000' },
         assigned: { main: '#cee8ff' },
         hovered: { main: '#dbdfe2' },

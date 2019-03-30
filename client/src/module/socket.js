@@ -2,6 +2,8 @@ import io from 'socket.io-client';
 
 import {
     updatePlayers,
+    invitationReceived,
+    invitePlayerRejected,
 } from '../actions';
 
 class Socket {
@@ -13,6 +15,8 @@ class Socket {
         this.socket.on('disconnect', this.handleOnDisconnect);
         this.socket.on('updateUsersList', this.onUpdateUsersList);
         this.socket.on('newMessage', this.onNewMessage);
+        this.socket.on('invitation', this.onInvitationReceived);
+        this.socket.on('invitationRejected', this.onInvitationRejected);
     }
 
     onUpdateUsersList = (data) => {
@@ -30,7 +34,13 @@ class Socket {
         console.log(data);
     };
 
-    invitePlayer = player => this.socket.emit('invite', player);
+    onInvitationReceived = data => this.store.dispatch(invitationReceived(data));
+
+    invitePlayer = payload => this.socket.emit('invite', payload);
+
+    onInvitationRejected = payload => this.store.dispatch(invitePlayerRejected(payload));
+
+    rejectInvitation = invitation => this.socket.emit('rejectInvitation', invitation);
 
     handleOnConnect = () => {
         const url = new URL(window.document.location.href);
