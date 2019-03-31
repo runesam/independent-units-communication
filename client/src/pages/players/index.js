@@ -7,10 +7,10 @@ import Icon from '@material-ui/icons/ExitToApp';
 import Typography from '@material-ui/core/Typography';
 
 import {
-    acceptInvitation,
-    invitePlayer,
-    rejectInvitation,
     socketInit,
+    invitePlayer,
+    acceptInvitation,
+    rejectInvitation,
 } from '../../actions';
 import { InvitationComponent, PlayersListComponent } from './components';
 

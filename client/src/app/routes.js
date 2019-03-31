@@ -6,7 +6,10 @@ import {
 
 import { history } from '../middleware';
 
-import Players from '../pages/players';
+import {
+    Players,
+    Game,
+} from '../pages';
 
 import {
     PrivateRoute,
@@ -19,7 +22,8 @@ export default () => (
     <Router history={history}>
         <Switch>
             {/* <PublicRoute path="/login" component={Login} /> */}
-            <PublicRoute exact path="*" component={Players} />
+            <PublicRoute exact path="/" component={Players} />
+            <PublicRoute exact path="/game" component={Game} />
         </Switch>
     </Router>
 );

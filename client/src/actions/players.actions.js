@@ -3,7 +3,9 @@ import {
     PLAYER_INVITE,
     INVITATION_RECEIVED,
     INVITATION_ACCEPTED,
-    INVITATION_REJECTED, PLAYER_INVITE_REJECTED,
+    INVITATION_REJECTED,
+    PLAYER_INVITE_ACCEPTED,
+    PLAYER_INVITE_REJECTED,
 } from '.';
 
 const updatePlayers = payload => ({
@@ -13,6 +15,11 @@ const updatePlayers = payload => ({
 
 const invitePlayer = payload => ({
     type: PLAYER_INVITE,
+    payload,
+});
+
+const invitePlayerAccepted = payload => ({
+    type: PLAYER_INVITE_ACCEPTED,
     payload,
 });
 
@@ -41,6 +48,7 @@ export {
     updatePlayers,
 
     invitationReceived,
+    invitePlayerAccepted,
     invitePlayerRejected,
 
     acceptInvitation,

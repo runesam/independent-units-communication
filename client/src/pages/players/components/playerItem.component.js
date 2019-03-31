@@ -33,8 +33,8 @@ class PlayerItemComponent extends PureComponent {
             classes,
             handleSubmit,
         } = this.props;
-        const pending = invite[player.id] === 'pending';
-        const rejected = invite[player.id] === 'rejected';
+        const pending = Boolean(invite[player.id] && invite[player.id].status === 'pending');
+        const rejected = Boolean(invite[player.id] && invite[player.id].status === 'rejected');
         return (
             <ListItem
               divider
