@@ -19,8 +19,8 @@ export default store => next => (action) => {
             next(action);
             break;
         case PLAYER_INVITE_ACCEPTED:
-            store.dispatch(push('/game'));
             next(action);
+            store.dispatch(push('/game'));
             break;
         case INVITATION_REJECTED:
             socket.rejectInvitation(payload);

@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
+import { withStyles } from '@material-ui/core';
 import Icon from '@material-ui/icons/ExitToApp';
 import Typography from '@material-ui/core/Typography';
 
@@ -16,9 +16,9 @@ import { InvitationComponent, PlayersListComponent } from './components';
 
 const styles = () => ({
     logout: {
-        position: 'fixed',
-        bottom: 20,
         right: 20,
+        bottom: 20,
+        position: 'fixed',
     },
 });
 
@@ -49,8 +49,8 @@ class Players extends PureComponent {
         const { invitePlayer: invitePlayerAction } = this.props;
         const { tabbed } = this.state;
         invitePlayerAction({
-            id: tabbed,
             number,
+            id: tabbed,
         });
         // this.setState({ tabbed: '' });
     };
@@ -88,8 +88,8 @@ class Players extends PureComponent {
                     </Fab>
                     {Boolean(invitation.from) && (
                         <InvitationComponent
-                          open={Boolean(invitation.from)}
                           invitation={invitation}
+                          open={Boolean(invitation.from)}
                           accept={this.handleInvitationAccept}
                           reject={this.handleInvitationReject}
                         />
@@ -100,9 +100,9 @@ class Players extends PureComponent {
         return (
             <Typography
               variant="h5"
+              gutterBottom
               align="center"
               color="secondary"
-              gutterBottom
             >
                 No Players Joined Yet!
             </Typography>

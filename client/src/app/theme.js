@@ -8,8 +8,8 @@ const theme = createMuiTheme({
         primary: { main: '#50aadd' },
         secondary: { main: '#c70000' },
         error: { main: '#c70000' },
-        assigned: { main: '#cee8ff' },
-        hovered: { main: '#dbdfe2' },
+        black: { main: '#000000' },
+        grayed: { main: '#f5f7fa' },
         white: { main: '#FFFFFF' },
     },
     typography: {

@@ -30,6 +30,14 @@ module.exports = {
                 },
             },
             {
+                test: /\.(gif|png|jpe?g|svg|)$/i,
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]',
+                    outputPath: 'images/',
+                },
+            },
+            {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
                 use: [
