@@ -37,6 +37,16 @@ const onInvite = (payload, callback, socket) => {
     });
 };
 
+const onNextMove = (data, socket) => {
+    const {
+        id,
+        value,
+        result,
+        current,
+    } = data;
+    socket.broadcast.to(id).emit('nextMoveReceived', { value, current, result });
+};
+
 const onRejectInvitation = (payload, callback, socket) => {
     socket.broadcast.to(payload.from.id).emit('invitationRejected', { id: socket.id });
 };
@@ -47,6 +57,7 @@ const onAcceptInvitation = (payload, callback, socket) => {
 
 io.on('connection', (socket) => {
     socket.on('disconnect', () => onDisconnect(socket));
+    socket.on('nextMove', data => onNextMove(data, socket));
     socket.on('joined', (data, callback) => onJoined(data, callback, socket));
     socket.on('invite', (data, callback) => onInvite(data, callback, socket));
     socket.on('rejectInvitation', (data, callback) => onRejectInvitation(data, callback, socket));

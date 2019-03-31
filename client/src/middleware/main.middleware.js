@@ -1,9 +1,12 @@
 import { push } from 'connected-react-router';
 
 import {
+    NEXT_MOVE,
     SOCKET_INIT,
     PLAYER_INVITE,
-    INVITATION_REJECTED, INVITATION_ACCEPTED, PLAYER_INVITE_ACCEPTED,
+    INVITATION_REJECTED,
+    INVITATION_ACCEPTED,
+    PLAYER_INVITE_ACCEPTED,
 } from '../actions';
 
 import socket from '../module/socket';
@@ -24,6 +27,10 @@ export default store => next => (action) => {
             break;
         case INVITATION_REJECTED:
             socket.rejectInvitation(payload);
+            next(action);
+            break;
+        case NEXT_MOVE:
+            socket.sendNextMove(payload);
             next(action);
             break;
         case INVITATION_ACCEPTED:

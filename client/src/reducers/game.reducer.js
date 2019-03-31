@@ -1,15 +1,14 @@
-export default (state, action) => {
-    const { type } = action;
+import {
+    NEXT_MOVE,
+    RECEIVE_NEXT_MOVE,
+} from '../actions';
+
+export default (state = [], action) => {
+    const { type, payload } = action;
     switch (type) {
+        case NEXT_MOVE: return [...state, payload];
+        case RECEIVE_NEXT_MOVE: return [...state, payload];
         default:
-            return [
-                { value: 1, current: 10 },
-                { value: 0, current: 5 },
-                { value: -1, current: 5 },
-                { value: -1, current: 5 },
-                { value: 1, current: 5 },
-                { value: 0, current: 5 },
-                { value: 1, current: 5 },
-            ];
+            return state;
     }
 };

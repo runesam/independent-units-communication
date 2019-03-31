@@ -8,11 +8,12 @@ import Typography from '@material-ui/core/Typography';
 class Button extends PureComponent {
     static propTypes = {
         value: propTypes.number.isRequired,
+        nextMove: propTypes.func.isRequired,
     };
 
     onClick = () => {
-        const { value } = this.props;
-        console.log(value);
+        const { value, nextMove } = this.props;
+        nextMove(value);
     };
 
     render() {
@@ -25,7 +26,7 @@ class Button extends PureComponent {
     }
 }
 
-const Footer = ({ classes }) => (
+const Footer = ({ classes, nextMove }) => (
     <Grid
         container
         direction="row"
@@ -33,11 +34,12 @@ const Footer = ({ classes }) => (
         justify="space-around"
         className={classes.root}
     >
-        {[-1, 0, 1].map(item => <Button key={item} value={item} />)}
+        {[-1, 0, 1].map(item => <Button key={item} value={item} nextMove={nextMove} />)}
     </Grid>
 );
 
 Footer.propTypes = {
+    nextMove: propTypes.func.isRequired,
     classes: propTypes.shape({}).isRequired,
 };
 

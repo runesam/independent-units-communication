@@ -12,6 +12,7 @@ const styles = theme => ({
         paddingTop: 90,
         paddingBottom: 100,
         backgroundColor: theme.palette.grayed.main,
+        minHeight: '100vh',
     },
     moveWrapper: {
         padding: 15,
@@ -38,8 +39,7 @@ const styles = theme => ({
 });
 
 const MoveComponent = (props) => {
-    const { index, move: { current, value }, classes } = props;
-    const result = (value + current) % 3;
+    const { index, move: { current, value, result }, classes } = props;
     return (
         <Grid
             container
