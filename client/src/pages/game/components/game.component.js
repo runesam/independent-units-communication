@@ -10,6 +10,7 @@ import {
 const GameComponent = (props) => {
     const {
         id,
+        who,
         game,
         nextMove,
         username,
@@ -17,14 +18,15 @@ const GameComponent = (props) => {
     return (
         <div>
             <HeaderComponent id={id} username={username} />
-            <PlayersMovesComponent game={game} />
-            <FooterComponent nextMove={nextMove} />
+            <PlayersMovesComponent game={game} who={who} />
+            <FooterComponent nextMove={nextMove} game={game} who={who} />
         </div>
     );
 };
 
 GameComponent.propTypes = {
     id: propTypes.string.isRequired,
+    who: propTypes.string.isRequired,
     nextMove: propTypes.func.isRequired,
     username: propTypes.string.isRequired,
     game: propTypes.arrayOf(propTypes.shape({})).isRequired,

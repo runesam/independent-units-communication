@@ -25,6 +25,13 @@ class Game extends PureComponent {
     //     gameInitAction();
     // }
 
+    componentWillReceiveProps(props, context) {
+        setTimeout(() => {
+            console.log(props, context);
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+    }
+
     nextMove = (value) => {
         const {
             id,
