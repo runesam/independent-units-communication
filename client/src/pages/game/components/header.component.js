@@ -8,13 +8,17 @@ import Typography from '@material-ui/core/Typography';
 import avatars from '../../../assets';
 
 const Header = (props) => {
-    const { id, username, classes } = props;
+    const {
+ id, username, classes, number,
+} = props;
     return (
         <AppBar position="fixed" className={classes.appBar}>
             <img src={avatars.avatar1} alt="avatar of the player" className={classes.avatar} />
             <Grid container className={classes.container}>
                 <Typography variant="h6">{`ID: ${id}`}</Typography>
-                <Typography variant="subtitle1">{`Username: ${username}`}</Typography>
+                <Typography variant="subtitle1">
+                    {`Username: ${username} | Init N: ${number}`}
+                </Typography>
             </Grid>
         </AppBar>
     );
@@ -22,7 +26,7 @@ const Header = (props) => {
 
 Header.propTypes = {
     id: propTypes.string.isRequired,
-    // number: propTypes.number.isRequired,
+    number: propTypes.number.isRequired,
     username: propTypes.string.isRequired,
     classes: propTypes.shape({}).isRequired,
 };

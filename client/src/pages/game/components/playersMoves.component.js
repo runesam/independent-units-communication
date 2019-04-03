@@ -15,6 +15,10 @@ const styles = theme => ({
         flexDirection: 'column',
         backgroundColor: theme.palette.grayed.main,
     },
+    placeholder: {
+        marginTop: 100,
+        color: theme.palette.black.main,
+    },
     moveWrapper: {
         padding: 15,
     },
@@ -97,13 +101,20 @@ const StyledMoveComponent = withStyles(styles)(MoveComponent);
 
 const PlayersMoves = (props) => {
     const { game, classes, who } = props;
+    if (game.length) {
+        return (
+            <Grid container className={classes.wrapper}>
+                {game.map((move, i) => {
+                    const key = `${i}`;
+                    return <StyledMoveComponent key={key} index={i} move={move} who={who} />;
+                })}
+            </Grid>
+        );
+    }
     return (
-        <Grid container className={classes.wrapper}>
-            {game.map((move, i) => {
-                const key = `${i}`;
-                return <StyledMoveComponent key={key} index={i} move={move} who={who} />;
-            })}
-        </Grid>
+        <Typography variant="h5" className={classes.placeholder} align="center">
+            {who === 'ping' ? 'Please Make the move...' : 'Please wait for the other player\'s move...'}
+        </Typography>
     );
 };
 

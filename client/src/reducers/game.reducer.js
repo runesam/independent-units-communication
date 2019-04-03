@@ -1,13 +1,15 @@
 import {
     NEXT_MOVE,
+    GAME_INITIATED,
     RECEIVE_NEXT_MOVE,
 } from '../actions';
 
-export default (state = [], action) => {
+export default (state = { moves: [], info: {} }, action) => {
     const { type, payload } = action;
     switch (type) {
-        case NEXT_MOVE: return [...state, payload];
-        case RECEIVE_NEXT_MOVE: return [...state, payload];
+        case GAME_INITIATED: return { ...state, info: payload };
+        case NEXT_MOVE: return { ...state, moves: [...state.moves, payload] };
+        case RECEIVE_NEXT_MOVE: return { ...state, moves: [...state.moves, payload] };
         default:
             return state;
     }

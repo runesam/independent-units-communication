@@ -8,22 +8,28 @@ import {
     nextMove,
 } from '../../actions';
 
-console.log(gameInit);
 class Game extends PureComponent {
     static propTypes = {
-        id: propTypes.string.isRequired,
-        who: propTypes.string.isRequired,
-        number: propTypes.number.isRequired,
-        username: propTypes.string.isRequired,
+        id: propTypes.string,
+        who: propTypes.string,
+        number: propTypes.number,
+        username: propTypes.string,
         nextMoveAction: propTypes.func.isRequired,
         gameInitAction: propTypes.func.isRequired,
         game: propTypes.arrayOf(propTypes.shape({})).isRequired,
     };
 
-    // componentWillMount() {
-    //     const { gameInitAction } = this.props;
-    //     gameInitAction();
-    // }
+    static defaultProps = {
+        id: '',
+        who: '',
+        number: 0,
+        username: '',
+    };
+
+    componentDidMount() {
+        const { gameInitAction } = this.props;
+        gameInitAction();
+    }
 
     componentWillReceiveProps(props, context) {
         setTimeout(() => {
@@ -62,6 +68,7 @@ class Game extends PureComponent {
             id,
             who,
             game,
+            number,
             username,
         } = this.props;
         return (
@@ -69,6 +76,7 @@ class Game extends PureComponent {
               id={id}
               who={who}
               game={game}
+              number={number}
               username={username}
               nextMove={this.nextMove}
             />
@@ -77,35 +85,8 @@ class Game extends PureComponent {
 }
 
 function mapStateToProps(state) {
-    const {
-        invite,
-        players,
-        invitation,
-    } = state;
-
-    if (Object.keys(invitation).length) {
-        const { number, from: { id } } = invitation;
-
-        return {
-            id,
-            who: 'pong',
-            game: state.game,
-            number: parseInt(number, 10),
-            username: players.find(player => player.id === id).username,
-        };
-    }
-
-    const id = Object.keys(invite).find(item => invite[item].status === 'accepted');
-    const { number } = invite[id] || {};
-    const player = players.find(item => item.id === id);
-
-    return {
-        id,
-        who: 'ping',
-        game: state.game,
-        username: player.username,
-        number: parseInt(number, 10),
-    };
+    const { game: { info, moves } } = state;
+    return { ...info, game: moves };
 }
 export default connect(mapStateToProps, {
     gameInitAction: gameInit,

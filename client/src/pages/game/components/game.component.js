@@ -12,12 +12,13 @@ const GameComponent = (props) => {
         id,
         who,
         game,
+        number,
         nextMove,
         username,
     } = props;
     return (
         <div>
-            <HeaderComponent id={id} username={username} />
+            <HeaderComponent id={id} username={username} number={number} />
             <PlayersMovesComponent game={game} who={who} />
             <FooterComponent nextMove={nextMove} game={game} who={who} />
         </div>
@@ -27,6 +28,7 @@ const GameComponent = (props) => {
 GameComponent.propTypes = {
     id: propTypes.string.isRequired,
     who: propTypes.string.isRequired,
+    number: propTypes.number.isRequired,
     nextMove: propTypes.func.isRequired,
     username: propTypes.string.isRequired,
     game: propTypes.arrayOf(propTypes.shape({})).isRequired,

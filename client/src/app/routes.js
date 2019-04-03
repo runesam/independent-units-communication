@@ -12,11 +12,9 @@ import {
 } from '../pages';
 
 import {
-    PrivateRoute,
+    // PrivateRoute,
     PublicRoute,
 } from '../containers';
-
-console.log(PrivateRoute);
 
 export default () => (
     <Router history={history}>
