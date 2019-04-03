@@ -5,13 +5,14 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
-import avatars from '../../../assets';
+import { ResultComponent } from '.';
+import { avatars } from '../../../assets';
 
 const styles = theme => ({
     wrapper: {
-        paddingTop: 90,
+        paddingTop: 87,
+        paddingBottom: 80,
         minHeight: '100vh',
-        paddingBottom: 100,
         flexDirection: 'column',
         backgroundColor: theme.palette.grayed.main,
     },
@@ -100,10 +101,17 @@ MoveComponent.propTypes = {
 const StyledMoveComponent = withStyles(styles)(MoveComponent);
 
 const PlayersMoves = (props) => {
-    const { game, classes, who } = props;
+    const {
+        who,
+        game,
+        over,
+        classes,
+    } = props;
+
     if (game.length) {
         return (
             <Grid container className={classes.wrapper}>
+                {over && <ResultComponent result={over} />}
                 {game.map((move, i) => {
                     const key = `${i}`;
                     return <StyledMoveComponent key={key} index={i} move={move} who={who} />;
@@ -111,6 +119,7 @@ const PlayersMoves = (props) => {
             </Grid>
         );
     }
+
     return (
         <Typography variant="h5" className={classes.placeholder} align="center">
             {who === 'ping' ? 'Please Make the move...' : 'Please wait for the other player\'s move...'}
@@ -120,6 +129,7 @@ const PlayersMoves = (props) => {
 
 PlayersMoves.propTypes = {
     who: propTypes.string.isRequired,
+    over: propTypes.string.isRequired,
     classes: propTypes.shape({}).isRequired,
     game: propTypes.arrayOf(propTypes.shape({})).isRequired,
 };

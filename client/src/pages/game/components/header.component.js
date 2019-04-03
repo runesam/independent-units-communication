@@ -5,7 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import { withStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
-import avatars from '../../../assets';
+import { avatars } from '../../../assets';
 
 const Header = (props) => {
     const {

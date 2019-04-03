@@ -12,6 +12,7 @@ class Game extends PureComponent {
     static propTypes = {
         id: propTypes.string,
         who: propTypes.string,
+        over: propTypes.string,
         number: propTypes.number,
         username: propTypes.string,
         nextMoveAction: propTypes.func.isRequired,
@@ -22,6 +23,7 @@ class Game extends PureComponent {
     static defaultProps = {
         id: '',
         who: '',
+        over: '',
         number: 0,
         username: '',
     };
@@ -67,6 +69,7 @@ class Game extends PureComponent {
         const {
             id,
             who,
+            over,
             game,
             number,
             username,
@@ -75,6 +78,7 @@ class Game extends PureComponent {
             <GameComponent
               id={id}
               who={who}
+              over={over}
               game={game}
               number={number}
               username={username}
@@ -85,8 +89,8 @@ class Game extends PureComponent {
 }
 
 function mapStateToProps(state) {
-    const { game: { info, moves } } = state;
-    return { ...info, game: moves };
+    const { game: { info, moves, over } } = state;
+    return { ...info, game: moves, over };
 }
 export default connect(mapStateToProps, {
     gameInitAction: gameInit,
