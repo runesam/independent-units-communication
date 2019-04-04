@@ -1,13 +1,10 @@
-const http = require('http');
-const express = require('express');
 const socketIO = require('socket.io');
 
 const Users = require('./users');
+const { server } = require('../expressSetup');
 
-const app = express();
-const server = http.createServer(app);
-const io = socketIO(server);
 const users = new Users();
+const io = socketIO(server);
 
 const onDisconnect = ({ id }) => {
     const user = users.deleteUser({ id });
@@ -26,7 +23,6 @@ const onJoined = ({ username, room }, callback, socket) => {
         users.deleteUser(user);
         users.setUser(user);
         io.to(room).emit('updateUsersList', users.getRoomUsers(room));
-        socket.emit('newMessage', 'welcome to the chat app');
     }
 };
 
@@ -56,6 +52,7 @@ const onAcceptInvitation = (payload, callback, socket) => {
 };
 
 io.on('connection', (socket) => {
+    socket.on('logout', () => socket.disconnect());
     socket.on('disconnect', () => onDisconnect(socket));
     socket.on('nextMove', data => onNextMove(data, socket));
     socket.on('joined', (data, callback) => onJoined(data, callback, socket));
@@ -65,5 +62,5 @@ io.on('connection', (socket) => {
 });
 
 server.listen(
-    process.env.PORT, () => console.log(`express init, listening to port ${process.env.PORT}`),
+    process.env.SERVER_PORT, () => console.log(`express init, listening to port ${process.env.SERVER_PORT}`),
 );

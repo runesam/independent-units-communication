@@ -1,7 +1,9 @@
-import Players from './players';
 import Game from './game';
+import Login from './login';
+import Players from './players';
 
 export {
-    Players,
     Game,
+    Login,
+    Players,
 };

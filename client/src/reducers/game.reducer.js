@@ -1,5 +1,6 @@
 import {
     NEXT_MOVE,
+    RESET_GAME,
     GAME_INITIATED,
     RECEIVE_NEXT_MOVE,
 } from '../actions';
@@ -17,8 +18,9 @@ function receiveNextMove(state, payload) {
 export default (state = { moves: [], info: {}, over: '' }, action) => {
     const { type, payload } = action;
     switch (type) {
-        case GAME_INITIATED: return { ...state, info: payload };
         case NEXT_MOVE: return nextMove(state, payload);
+        case GAME_INITIATED: return { ...state, info: payload };
+        case RESET_GAME: return { moves: [], info: {}, over: '' };
         case RECEIVE_NEXT_MOVE: return receiveNextMove(state, payload);
         default:
             return state;

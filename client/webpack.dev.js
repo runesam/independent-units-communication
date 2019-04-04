@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 
 const webpack = require('webpack');
 const merge = require('webpack-merge');
@@ -12,7 +12,7 @@ module.exports = () => merge(common, {
         hot: true,
         inline: true,
         host: 'localhost',
-        port: process.env.PORT,
+        port: process.env.CLIENT_PORT,
         proxy: {
             '/api': {
                 target: `http://localhost:${process.env.SERVER_PORT}`,

@@ -15,7 +15,7 @@ PrivateRoute.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-    const { dashboardUser: { loggedIn } } = state;
+    const { user: { loggedIn } } = state;
     return ({ loggedIn });
 };
 

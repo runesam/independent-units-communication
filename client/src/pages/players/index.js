@@ -7,6 +7,8 @@ import Icon from '@material-ui/icons/ExitToApp';
 import Typography from '@material-ui/core/Typography';
 
 import {
+    logout,
+    resetGame,
     socketInit,
     invitePlayer,
     acceptInvitation,
@@ -24,6 +26,9 @@ const styles = () => ({
 
 class Players extends PureComponent {
     static propTypes = {
+        logout: propTypes.func.isRequired,
+        resetGame: propTypes.func.isRequired,
+        user: propTypes.shape({}).isRequired,
         socketInit: propTypes.func.isRequired,
         invite: propTypes.shape({}).isRequired,
         invitePlayer: propTypes.func.isRequired,
@@ -39,8 +44,15 @@ class Players extends PureComponent {
     };
 
     componentDidMount() {
-        const { socketInit: socketInitAction } = this.props;
-        socketInitAction();
+        const {
+            user: { socket },
+            resetGame: resetGameAction,
+            socketInit: socketInitAction,
+        } = this.props;
+        if (socket) {
+            return resetGameAction();
+        }
+        return socketInitAction();
     }
 
     touchPlayer = tabbed => this.setState({ tabbed });
@@ -52,7 +64,6 @@ class Players extends PureComponent {
             number,
             id: tabbed,
         });
-        // this.setState({ tabbed: '' });
     };
 
     handleInvitationAccept = () => {
@@ -71,6 +82,7 @@ class Players extends PureComponent {
             classes,
             players,
             invitation,
+            logout: logoutAction,
         } = this.props;
         const { tabbed } = this.state;
         if (players.length) {
@@ -83,7 +95,7 @@ class Players extends PureComponent {
                       touchPlayer={this.touchPlayer}
                       handleSubmit={this.handleInvite}
                     />
-                    <Fab className={classes.logout}>
+                    <Fab className={classes.logout} onClick={logoutAction}>
                         <Icon />
                     </Fab>
                     {Boolean(invitation.from) && (
@@ -97,22 +109,32 @@ class Players extends PureComponent {
                 </div>
             );
         }
-        return (
+        return ([
             <Typography
-              variant="h5"
-              gutterBottom
-              align="center"
-              color="secondary"
+                variant="h5"
+                gutterBottom
+                align="center"
+                color="secondary"
+                key="TypographyII"
             >
                 No Players Joined Yet!
-            </Typography>
-        );
+            </Typography>,
+            <Fab key="logoutII" className={classes.logout} onClick={logoutAction}>
+                <Icon />
+            </Fab>,
+        ]);
     }
 }
 
 const mapStateToProps = (state) => {
-    const { players, invite, invitation } = state;
+    const {
+        user,
+        invite,
+        players,
+        invitation,
+    } = state;
     return {
+        user,
         invite,
         players,
         invitation,
@@ -120,6 +142,8 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
+    logout,
+    resetGame,
     socketInit,
     invitePlayer,
     acceptInvitation,

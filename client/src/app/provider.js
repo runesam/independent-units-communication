@@ -4,18 +4,19 @@ import propTypes from 'prop-types';
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider as StateManagerProvider } from 'react-redux';
 
+import { loginSuccess } from '../actions';
 import Layout from './layout';
 import Theme from './theme';
 
+const { getJSON } = require('js-cookie');
+
 class Provider extends PureComponent {
     componentWillMount() {
-        // const { getJSON } = Cookies;
-        // const auth = getJSON('auth');
-        // const { store } = this.props;
-        // assignInterceptor(store);
-        // if (auth && auth.token) {
-        //     store.dispatch(loginSuccess({ data: auth }));
-        // }
+        const auth = getJSON('auth');
+        const { store } = this.props;
+        if (auth && auth.token) {
+            store.dispatch(loginSuccess({ data: auth }));
+        }
     }
 
     render() {

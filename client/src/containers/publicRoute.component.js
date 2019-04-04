@@ -14,6 +14,9 @@ PublicRoute.propTypes = {
     loggedIn: propTypes.bool.isRequired,
 };
 
-const mapStateToProps = () => ({ loggedIn: false });
+const mapStateToProps = (state) => {
+    const { user: { loggedIn } } = state;
+    return ({ loggedIn });
+};
 
 export default connect(mapStateToProps)(PublicRoute);

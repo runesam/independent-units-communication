@@ -49,6 +49,7 @@ export default store => next => (action) => {
     switch (type) {
         case SOCKET_INIT:
             socket.init(store);
+            next(action);
             break;
         case PLAYER_INVITE:
             socket.invitePlayer(payload);

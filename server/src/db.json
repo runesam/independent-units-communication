@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "runesam",
+      "password": "$2a$10$.XV1KDRvfnOEOpxgyJvPwOAEUBnnRCDH6tET0f2p7YCus0Lyt8XIS"
+    },
+    {
+      "id": "2",
+      "username": "sameh",
+      "password": "$2a$10$.XV1KDRvfnOEOpxgyJvPwOAEUBnnRCDH6tET0f2p7YCus0Lyt8XIS"
+    },
+    {
+      "id": "3",
+      "username": "semih",
+      "password": "$2a$10$.XV1KDRvfnOEOpxgyJvPwOAEUBnnRCDH6tET0f2p7YCus0Lyt8XIS"
+    }
+  ]
+}
