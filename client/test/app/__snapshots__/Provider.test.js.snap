@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Provider /> matches the snapshot 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [MockFunction] {
+        "calls": Array [
+          Array [
+            Object {
+              "payload": Object {
+                "response": Object {
+                  "data": Object {
+                    "token": "token",
+                  },
+                },
+              },
+              "type": "LOGIN_SUCCESS",
+            },
+          ],
+          Array [
+            Object {
+              "payload": Object {
+                "response": Object {
+                  "data": Object {
+                    "token": "token",
+                  },
+                },
+              },
+              "type": "LOGIN_SUCCESS",
+            },
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": Object {
+              "payload": Object {
+                "response": Object {
+                  "data": Object {
+                    "token": "token",
+                  },
+                },
+              },
+              "type": "LOGIN_SUCCESS",
+            },
+          },
+          Object {
+            "type": "return",
+            "value": Object {
+              "payload": Object {
+                "response": Object {
+                  "data": Object {
+                    "token": "token",
+                  },
+                },
+              },
+              "type": "LOGIN_SUCCESS",
+            },
+          },
+        ],
+      },
+      "getState": [MockFunction],
+      "subscribe": [MockFunction],
+    }
+  }
+>
+  <Theme>
+    <Connect(ConnectedRouterWithContext)
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <span>
+        app
+      </span>
+    </Connect(ConnectedRouterWithContext)>
+  </Theme>
+</Provider>
+`;

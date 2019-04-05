@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FieldsListComponent /> matches the snapshot 1`] = `
+Array [
+  <WithStyles(Grid)
+    item={true}
+    key="username"
+    xs={3}
+  >
+    <FormFieldComponent
+      field={
+        Object {
+          "label": "Email",
+          "name": "username",
+          "type": "email",
+        }
+      }
+    />
+  </WithStyles(Grid)>,
+  <WithStyles(Grid)
+    item={true}
+    key="password"
+    xs={3}
+  >
+    <FormFieldComponent
+      field={
+        Object {
+          "label": "Password",
+          "name": "password",
+          "type": "password",
+        }
+      }
+    />
+  </WithStyles(Grid)>,
+]
+`;

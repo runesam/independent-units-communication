@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextFieldComponent /> matches the snapshot 1`] = `
+<TextFieldComponent
+  classes={
+    Object {
+      "root": "TextFieldComponent-root-1",
+    }
+  }
+  component={[Function]}
+  input={Object {}}
+  label="Email"
+  meta={Object {}}
+  name="username"
+  placeholder="Email"
+  type="email"
+/>
+`;

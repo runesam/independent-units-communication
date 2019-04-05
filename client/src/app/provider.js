@@ -1,18 +1,16 @@
 import React, { PureComponent } from 'react';
 import propTypes from 'prop-types';
+import Cookies from 'js-cookie';
 
 import { ConnectedRouter } from 'connected-react-router';
 import { Provider as StateManagerProvider } from 'react-redux';
 
 import { loginSuccess } from '../actions';
-import Layout from './layout';
 import Theme from './theme';
-
-const { getJSON } = require('js-cookie');
 
 class Provider extends PureComponent {
     componentWillMount() {
-        const auth = getJSON('auth');
+        const auth = Cookies.getJSON('auth');
         const { store } = this.props;
         if (auth && auth.token) {
             store.dispatch(loginSuccess({ data: auth }));
@@ -25,9 +23,7 @@ class Provider extends PureComponent {
             <StateManagerProvider store={store}>
                 <Theme>
                     <ConnectedRouter history={history}>
-                        <Layout>
-                            {children}
-                        </Layout>
+                        {children}
                     </ConnectedRouter>
                 </Theme>
             </StateManagerProvider>

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormFieldComponent /> matches the snapshot 1`] = `
+<Field
+  component={[Function]}
+  label="Email"
+  name="username"
+  placeholder="Email"
+  type="email"
+/>
+`;
+
+exports[`<FormFieldComponent /> render the field with the right name 1`] = `
+<Field
+  component={[Function]}
+  label="Email"
+  name="username"
+  placeholder="Email"
+  type="email"
+/>
+`;

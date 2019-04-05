@@ -5,6 +5,7 @@ import {
     NEXT_MOVE,
     SOCKET_INIT,
     PLAYER_INVITE,
+    PLAYERS_UPDATE,
     INVITATION_REJECTED,
     INVITATION_ACCEPTED,
     PLAYER_INVITE_ACCEPTED,
@@ -69,6 +70,12 @@ export default store => next => (action) => {
             break;
         case GAME_INIT:
             store.dispatch(gameInitiated(gameInit(store)));
+            next(action);
+            break;
+        case PLAYERS_UPDATE:
+            if (payload.length === 0) {
+                store.dispatch(push('/'));
+            }
             next(action);
             break;
         case INVITATION_ACCEPTED:

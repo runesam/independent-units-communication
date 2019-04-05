@@ -16,7 +16,6 @@ const TextFieldComponent = (props) => {
         input,
         label,
         classes,
-        setFieldToBeFocused,
         meta: { touched, error },
         ...custom
     } = props;
@@ -27,7 +26,6 @@ const TextFieldComponent = (props) => {
                 label={label}
                 className={classes.root}
                 error={Boolean(touched && error)}
-                inputRef={ref => setFieldToBeFocused(ref)}
                 InputLabelProps={custom.type === 'date' ? { shrink: true } : null}
                 {...input}
                 {...custom}
@@ -38,16 +36,16 @@ const TextFieldComponent = (props) => {
 };
 
 TextFieldComponent.propTypes = {
-	meta: propTypes.shape({}),
-	setFieldToBeFocused: propTypes.func.isRequired,
-	classes: propTypes.shape({}).isRequired,
-	input: propTypes.shape({}).isRequired,
 	label: propTypes.string,
+	meta: propTypes.shape({}),
+	input: propTypes.shape({}),
+	classes: propTypes.shape({}).isRequired,
 };
 
 TextFieldComponent.defaultProps = {
-	label: '',
 	meta: {},
+    input: {},
+	label: '',
 };
 
 export default withStyles(styles)(TextFieldComponent);
