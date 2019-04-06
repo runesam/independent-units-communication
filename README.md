@@ -6,7 +6,9 @@ When a player starts, it starts a random (whole) number and sends it to the seco
 the security layer does not reflect the player. it is just a security demonstration to access the platform.
 
 ## Login flow
-<img height="500" alt="Login flow]" src="docs/1st.gif">
+<p align="center">
+  <img height="500" alt="Login flow]" src="docs/1st.gif">
+</p>
 
 #### Client Side.
 
@@ -74,7 +76,9 @@ then navigate to the project root dir `cd independent-units-communication`
 ```
 
 ## Game flow
-<img height="500" alt="Login flow]" src="docs/2nd.gif">
+<p align="center">
+  <img height="500" alt="Login flow]" src="docs/2nd.gif">
+</p>
 
 ## Find in the App
 
