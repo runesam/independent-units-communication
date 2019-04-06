@@ -7,7 +7,7 @@ the security layer does not reflect the player. it is just a security demonstrat
 
 ## Login flow
 <p align="center">
-  <img height="500" alt="Login flow]" src="docs/1st.gif">
+  <img height="500" alt="Login flow]" src="docs/01.gif">
 </p>
 
 #### Client Side.
@@ -77,7 +77,7 @@ then navigate to the project root dir `cd independent-units-communication`
 
 ## Game flow
 <p align="center">
-  <img height="500" alt="Login flow]" src="docs/2nd.gif">
+  <img height="500" alt="Login flow]" src="docs/02.gif">
 </p>
 
 ## Find in the App
