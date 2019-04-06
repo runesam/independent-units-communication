@@ -1,10 +1,13 @@
 # independent units communication
 A game with two independent units – the players – communicating with each other using an API.
 
-### Security
-oauth 2 via JWT for pre created user in SQL DB.
+## Concept
+When a player starts, it starts a random (whole) number and sends it to the second player as an approach of starting the game. The receiving player can now always choose between adding one of {-1,0,1} to get to a number that is divisible by 3. Divide it by three. The resulting whole number is then sent back to the original sender.
+the security layer does not reflect the player. it is just a security demonstration to access the platform.
 
-the security layer doesn't reflect the player. it is just a security demonsteration to access the platform.
+
+![Login flow](docs/1st.gif "Login flow")
+
 
 say it is a game people from the same department can access.
 
