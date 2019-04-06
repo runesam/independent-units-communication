@@ -5,37 +5,104 @@ A game with two independent units – the players – communicating with each ot
 When a player starts, it starts a random (whole) number and sends it to the second player as an approach of starting the game. The receiving player can now always choose between adding one of {-1,0,1} to get to a number that is divisible by 3. Divide it by three. The resulting whole number is then sent back to the original sender.
 the security layer does not reflect the player. it is just a security demonstration to access the platform.
 
+## Login flow
+<img height="500" alt="Login flow]" src="docs/1st.gif">
 
-![Login flow](docs/1st.gif "Login flow")
+#### Client Side.
+
+##### The app routes include two main Routes
+- PrivateRoute
+- PublicRoute
+
+The behaviour of the PrivateRoute is it renders the targeted component of the user is logged in and redirect to the PublicRoute if not logged in.
+
+The default PublicRoute renders the `Login` component.
+
+##### The Login component is a form on it's submit the user credentials to the server via 'http' request to get a valid JWT.
+
+after successfull login the App redirects to the root Route `/` and renders the `players` components and init the socket connection.
+
+#### Server Side.
+##### There are some pre saved users in JSON file to simulate DB.
+
+here they are
+| username  | password |
+| ------------- | ------------- |
+| runesam  | rogina003  |
+| sameh  | rogina003  |
 
 
-say it is a game people from the same department can access.
 
-default route of the app is `/login` as long there is no saved `access_token` in the cookies
+## Run The APP
 
-* if there is an `access_token` we validate it via setting up the socket connection to the back-end.
-* if it failed we return `401` to remove the `access_token` from the cookie then we redirect to the `/login` page.
-* if success we setup the socket connection to emit and receive messages then we redirect to the `/players` list page.
+#### Node is Needed
+[Node.js](https://nodejs.org/en/)
 
-### User Journey from the `/players` page to `/game` page where the game accur
+#### Dependency manager
+install `yarn` package manager globally
+[Yarn](https://yarnpkg.com/lang/en/docs/install/)
 
-* `/players` page suppose to list all connected clients (ideally via another tab in the browser or same browser).
-* if there is only one connected client (player); the list will be empty (telling there is no player at the moment).
-* when another client (player) connect successfully to the back-end, the `/players` page list it (the new player).
+#### Recommended IDE
+[VSCode](https://code.visualstudio.com/)
 
-#### so now we assume that there is three players connected. meaning on every client's `/players` page there is two players listed (the player won't see him/herself in the list)
+#### Install `eslint` to follow code quality
+[Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-* when a `playerI` clicks on a `playerII` from the list; it turns to `invite for a game form` with an `input` field for the init number` and `send button` to submit.
-* when `playerI` submit an invitation; the `playerII` on the list turns to the pending state.
-* `playerII` gets a popup of the invitation including the init number. with `accept` or `reject` options.
-* if `playerII` accepted the invitation; both players gets flagged as `in-game` status and disappear from the `/players` page. so now it is clear that the `/players` page shows only the non `in-game` status players. and there will be one player left in the list as we started with 3 players.
-* if `playerII` rejected the game; `playerI` can see the `rejected` sign as the last response from `playerII` and it turns to the ready state again where it can be invited for a game.
+### Clone the Repo
+clone the repo `git clone git@github.com:runesam/independent-units-communication.git`
 
-so a single player obj could be
+then navigate to the project root dir `cd independent-units-communication`
 
-``` javascript
-  {
-    id: "socket_generated_ID",
-    status: "in-game" || "pending" || "rejected"
-  }
+### client
+- navigate to the client dir `cd client`
+- install dependencies via `yarn`
+- init the client server via `yarn serve`
+  - default client server port is defiend in `.env` file as `3000`.
+
+
+### server
+- navigate to the client dir `cd server`
+- install dependencies via `yarn`
+- init the client server via `yarn start`
+  - default server port is defiend in `.env` file as `5000`.
+
+
+## alternative
+```shell
+  ./execute.sh
 ```
+
+## Game flow
+<img height="500" alt="Login flow]" src="docs/1st.gif">
+
+## Find in the App
+
+### client
+- Redux as state manager
+- custom middleware
+- axios
+- socket.io
+- redux form
+- material UI
+- jest
+
+### server
+- express
+- socket.io
+- jwt
+- bcrypt
+
+## TODO
+### code base
+- app is only designed for mobile. responsive to be implemented
+- full unit test
+- integration test
+- include the jwt in the socket messages to be validated
+- implement tests for the backend
+- enhance message listener
+
+### game
+- remove players from players list when they are in a game so they don't receive invites
+- break the game in case one of players left the game.
+- `Both players should be able to play automatically without user input. One of the players should optionally be adjustable by a user.` not really clear. but to be done :)
+
