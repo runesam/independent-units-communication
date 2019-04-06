@@ -26,6 +26,7 @@ after successfull login the App redirects to the root Route `/` and renders the 
 ##### There are some pre saved users in JSON file to simulate DB.
 
 here they are
+
 | username  | password |
 | ------------- | ------------- |
 | runesam  | rogina003  |
@@ -73,7 +74,7 @@ then navigate to the project root dir `cd independent-units-communication`
 ```
 
 ## Game flow
-<img height="500" alt="Login flow]" src="docs/1st.gif">
+<img height="500" alt="Login flow]" src="docs/2nd.gif">
 
 ## Find in the App
 
