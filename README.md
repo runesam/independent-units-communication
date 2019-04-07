@@ -22,7 +22,7 @@ The default PublicRoute renders the `Login` component.
 
 ##### The Login component is a form on it's submit the user credentials to the server via 'http' request to get a valid JWT.
 
-after successfull login the App redirects to the root Route `/` and renders the `players` components and init the socket connection.
+after successful login the App redirects to the root Route `/` and renders the `players` components and init the socket connection.
 
 #### Server Side.
 ##### There are some pre saved users in JSON file to simulate DB.
@@ -60,21 +60,32 @@ then navigate to the project root dir `cd independent-units-communication`
 - navigate to the client dir `cd client`
 - install dependencies via `yarn`
 - init the client server via `yarn serve`
-  - default client server port is defiend in `.env` file as `3000`.
+  - default client server port is defined in `.env` file as `3000`.
 
 
 ### server
 - navigate to the client dir `cd server`
 - install dependencies via `yarn`
 - init the client server via `yarn start`
-  - default server port is defiend in `.env` file as `5000`.
+  - default server port is defined in `.env` file as `5000`.
 
 
 ## alternative
-```shell
-  ./execute.sh
+```bash
+    ./install.sh   
+    ./execute.sh
 ```
 
+## docker
+
+- build the image
+```bash
+    docker build -t game .
+```
+- run the container
+```bash
+    docker run -p 3000:3000 -p 5000:5000 game
+```
 ## Game flow
 <p align="center">
   <img height="500" alt="Login flow]" src="docs/02.gif">

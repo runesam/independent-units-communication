@@ -11,7 +11,7 @@ module.exports = () => merge(common, {
         historyApiFallback: true,
         hot: true,
         inline: true,
-        host: 'localhost',
+        host: '0.0.0.0',
         port: process.env.CLIENT_PORT,
         proxy: {
             '/api': {
@@ -27,6 +27,7 @@ module.exports = () => merge(common, {
         new webpack.DefinePlugin({
             'process.env.API_URL': '\'/\'',
             'process.env.NODE_ENV': '\'development\'',
+            'process.env.SERVER_PORT': process.env.SERVER_PORT,
         }),
     ],
 });

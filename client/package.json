@@ -6,7 +6,6 @@
   "private": false,
   "scripts": {
     "serve": "webpack-dev-server --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
     "test": "jest ./test --coverage",
     "testWatch": "jest ./test --coverage --watchAll"
   },

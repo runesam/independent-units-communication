@@ -11,7 +11,7 @@ import {
 class Socket {
     init(store) {
         this.store = store;
-        this.socket = io('http://localhost:5000');
+        this.socket = io(`http://localhost:${process.env.SERVER_PORT}`);
 
         this.socket.on('connect', this.handleOnConnect);
         this.socket.on('disconnect', this.handleOnDisconnect);
@@ -26,11 +26,13 @@ class Socket {
 
     invitePlayer = payload => this.socket.emit('invite', payload);
 
-    rejectInvitation = invitation => this.socket.emit('rejectInvitation', invitation);
+    sendNextMove = payload => this.socket.emit('nextMove', payload);
 
     acceptInvitation = invitation => this.socket.emit('acceptInvitation', invitation);
 
-    sendNextMove = payload => this.socket.emit('nextMove', payload);
+    rejectInvitation = invitation => this.socket.emit('rejectInvitation', invitation);
+
+    // store dispatches...
 
     onUpdateUsersList = data => this.store.dispatch(updatePlayers(
         data.filter(player => player.id !== this.player.id),

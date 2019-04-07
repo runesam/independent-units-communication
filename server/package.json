@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "test": "jest ./test --coverage",
     "testWatch": "jest ./test --coverage --watchAll"
   },
