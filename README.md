@@ -16,13 +16,13 @@ the security layer does not reflect the player. it is just a security demonstrat
 - PrivateRoute
 - PublicRoute
 
-The behaviour of the PrivateRoute is it renders the targeted component of the user is logged in and redirect to the PublicRoute if not logged in.
+The behaviour of the PrivateRoute is it renders the targeted component if the user is logged in and redirect to the PublicRoute if not logged in.
 
 The default PublicRoute renders the `Login` component.
 
-##### The Login component is a form on it's submit the user credentials to the server via 'http' request to get a valid JWT.
+##### The Login component is a form on it's submit the user sends the credentials to the server via 'http' request to get a valid JWT.
 
-after successful login the App redirects to the root Route `/` and renders the `players` components and init the socket connection.
+after successful login the App redirects to the root Route `/` and renders the `players` components then init the socket connection.
 
 #### Server Side.
 ##### There are some pre saved users in JSON file to simulate DB.
@@ -115,10 +115,10 @@ then navigate to the project root dir `cd independent-units-communication`
 - integration test
 - include the jwt in the socket messages to be validated
 - implement tests for the backend
-- enhance message listener
+- enhance message listeners
 
 ### game
-- remove players from players list when they are in a game so they don't receive invites
+- remove players from players list when they are in a game so they don't receive invitations
 - break the game in case one of players left the game.
 - `Both players should be able to play automatically without user input. One of the players should optionally be adjustable by a user.` not really clear. but to be done :)
 
